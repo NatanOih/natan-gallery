@@ -1,9 +1,27 @@
 import Link from "next/link";
 
+const mockUrls = [
+  "https://images.unsplash.com/photo-1715292779491-a32d1f086f5a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8",
+  "https://plus.unsplash.com/premium_photo-1669048776605-28ea2e52ae66?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1715320555601-75fe531bfefe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1715144536780-c847096a8632?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D",
+];
+
+const mockIUmages = mockUrls.map((url, index) => ({
+  id: index + 1,
+  url,
+}));
+
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      hello
+    <main className="">
+      <div className="flex flex-wrap gap-4">
+        {[...mockIUmages, ...mockIUmages, ...mockIUmages].map((image) => (
+          <div className="w-48 " key={image.id}>
+            <img alt="image" className="" src={image.url} />
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
