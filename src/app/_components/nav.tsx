@@ -1,4 +1,12 @@
-import { SignIn, SignInButton, SignedOut } from "@clerk/clerk-react";
+"use client";
+
+import {
+  SignIn,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/clerk-react";
 import React from "react";
 
 export default function TopNav() {
@@ -10,6 +18,9 @@ export default function TopNav() {
         <SignedOut>
           <SignInButton />
         </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </nav>
   );
