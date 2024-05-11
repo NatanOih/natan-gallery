@@ -7,13 +7,12 @@ export function TopNav() {
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>Gallery</div>
 
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center justify-center gap-4 rounded-2xl bg-white  p-2">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <UploadClient />
-
           <UserButton />
         </SignedIn>
       </div>

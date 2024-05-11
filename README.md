@@ -13,3 +13,5 @@
 - [] delete
 - [] analytics (posthog)
 - [] retelimiting (upstach)
+
+  /_ @ts-expect-error כככ _/

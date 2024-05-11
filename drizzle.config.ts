@@ -4,11 +4,10 @@ import { env } from "~/env";
 
 export default {
   schema: "./src/server/db/schema.ts",
-  driver: "pg",
+  // driver: "pg",
   dialect: "postgresql",
   dbCredentials: {
     url: env.POSTGRES_URL,
   },
   tablesFilter: ["t3gallery_*"],
-  /* @ts-expect-error כככ */
 } satisfies Config;

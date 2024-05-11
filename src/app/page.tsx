@@ -10,8 +10,13 @@ async function Images() {
   return (
     <div className="flex flex-wrap gap-4">
       {images.map((image) => (
-        <div className="flex w-48 flex-col items-center gap-2 " key={image.id}>
-          <div className="">{image.name}</div>
+        <div
+          className="flex w-56 flex-col items-center gap-2 p-1"
+          key={image.id}
+        >
+          <div className="text-center text-sm">
+            {image.name} uploaded by: {image.userName}
+          </div>
           <img alt="image" className="" src={image.url} />
         </div>
       ))}
@@ -30,7 +35,9 @@ async function Audios() {
           className=" flex flex-col items-center justify-center p-2"
           key={audio.id}
         >
-          <h1> {audio.name} </h1>
+          <div className=" text-sm">
+            name: {audio.name} uploaded by: {audio.userName}{" "}
+          </div>
           <audio controls>
             <source src={audio.url} />
           </audio>

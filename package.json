@@ -6,7 +6,10 @@
   "scripts": {
     "build": "next build",
     "db:push": "drizzle-kit push:pg",
+    "db:push2": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
     "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start"

@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { db } from "~/server/db";
@@ -17,9 +17,11 @@ export const ourFileRouter = {
 
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
+      /* @ts-expect-error כככ */
+      const response = await clerkClient.users.getUser(user.userId);
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.userId };
+      return { userId: user.userId, firstName: response.firstName };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("metadata", metadata);
@@ -33,15 +35,22 @@ export const ourFileRouter = {
 
       if (isAudio) {
         console.log("saving audio");
+
         await db.insert(audios).values({
+          /* @ts-expect-error כככ */
           name: file.name,
           url: file.url,
+          userId: metadata.userId,
+          userName: metadata.firstName,
         });
       } else {
         console.log("saving image");
         await db.insert(images).values({
+          /* @ts-expect-error כככ */
           name: file.name,
           url: file.url,
+          userId: metadata.userId,
+          userName: metadata.firstName,
         });
       }
 
