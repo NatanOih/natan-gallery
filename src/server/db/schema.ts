@@ -18,8 +18,8 @@ import {
  */
 export const createTable = pgTableCreator((name) => `t3gallery_${name}`);
 
-export const images = createTable(
-  "images",
+export const uploads = createTable(
+  "uploads",
   {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
@@ -33,22 +33,5 @@ export const images = createTable(
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
-  }),
-);
-export const audios = createTable(
-  "audios",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }).notNull(),
-    userName: varchar("userName", { length: 256 }).notNull(),
-    url: varchar("url", { length: 1024 }).notNull(),
-    userId: varchar("userId", { length: 256 }).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt", { withTimezone: true }),
-  },
-  (example) => ({
-    nameIndex2: index("name_idx2").on(example.name),
   }),
 );

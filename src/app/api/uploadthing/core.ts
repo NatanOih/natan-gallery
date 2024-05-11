@@ -2,7 +2,7 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { db } from "~/server/db";
-import { audios, images } from "~/server/db/schema";
+import { uploads } from "~/server/db/schema";
 
 const f = createUploadthing();
 
@@ -30,29 +30,37 @@ export const ourFileRouter = {
 
       console.log("file url", file.url);
 
-      const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
-      const isAudio = audioExtensions.some((ext) => file.url.endsWith(ext));
+      // const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
+      // const isAudio = audioExtensions.some((ext) => file.url.endsWith(ext));
 
-      if (isAudio) {
-        console.log("saving audio");
+      // if (isAudio) {
+      //   console.log("saving audio");
 
-        await db.insert(audios).values({
-          /* @ts-expect-error כככ */
-          name: file.name,
-          url: file.url,
-          userId: metadata.userId,
-          userName: metadata.firstName,
-        });
-      } else {
-        console.log("saving image");
-        await db.insert(images).values({
-          /* @ts-expect-error כככ */
-          name: file.name,
-          url: file.url,
-          userId: metadata.userId,
-          userName: metadata.firstName,
-        });
-      }
+      //   await db.insert(audios).values({
+      //     /* @ts-expect-error כככ */
+      //     name: file.name,
+      //     url: file.url,
+      //     userId: metadata.userId,
+      //     userName: metadata.firstName,
+      //   });
+      // } else {
+      //   console.log("saving image");
+      //   await db.insert(images).values({
+      //     /* @ts-expect-error כככ */
+      //     name: file.name,
+      //     url: file.url,
+      //     userId: metadata.userId,
+      //     userName: metadata.firstName,
+      //   });
+      // }
+
+      await db.insert(uploads).values({
+        /* @ts-expect-error כככ */
+        name: file.name,
+        url: file.url,
+        userId: metadata.userId,
+        userName: metadata.firstName,
+      });
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };

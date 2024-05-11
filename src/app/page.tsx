@@ -1,46 +1,32 @@
 import { SignedOut, SignedIn } from "@clerk/nextjs";
+import { Fragment } from "react";
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
 
-async function Images() {
-  const images = await db.query.images.findMany({
+async function Uploads() {
+  const uploads = await db.query.uploads.findMany({
     orderBy: (model, { desc }) => desc(model.id),
   });
-  return (
-    <div className="flex flex-wrap gap-4">
-      {images.map((image) => (
-        <div
-          className="flex w-56 flex-col items-center gap-2 p-1"
-          key={image.id}
-        >
-          <div className="text-center text-sm">
-            {image.name} uploaded by: {image.userName}
-          </div>
-          <img alt="image" className="" src={image.url} />
-        </div>
-      ))}
-    </div>
-  );
-}
 
-async function Audios() {
-  const audios = await db.query.audios.findMany({
-    orderBy: (model, { desc }) => desc(model.id),
-  });
+  const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
+
   return (
     <div className="flex flex-wrap gap-4">
-      {audios.map((audio) => (
+      {uploads.map((upload) => (
         <div
-          className=" flex flex-col items-center justify-center p-2"
-          key={audio.id}
+          key={upload.id}
+          className="flex h-56 w-56 flex-col items-center justify-start gap-4  border-2 border-white p-2"
         >
-          <div className=" text-sm">
-            name: {audio.name} uploaded by: {audio.userName}{" "}
-          </div>
-          <audio controls>
-            <source src={audio.url} />
-          </audio>
+          <p> {upload.name}</p>
+          <p> uploaded by: {upload.userName}</p>
+          {audioExtensions.some((ext) => upload.url.endsWith(ext)) ? (
+            <audio className=" scale-[77%]" controls>
+              <source src={upload.url} />
+            </audio>
+          ) : (
+            <img src={upload.url} alt={upload.name} />
+          )}
         </div>
       ))}
     </div>
@@ -57,8 +43,7 @@ export default async function HomePage() {
       </SignedOut>
 
       <SignedIn>
-        <Images />
-        <Audios />
+        <Uploads />
       </SignedIn>
     </main>
   );
