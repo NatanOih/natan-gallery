@@ -15,3 +15,9 @@
 - [] retelimiting (upstach)
 
   /_ @ts-expect-error כככ _/
+
+my todo
+
+-[] choose who can see your stuff
+-[] add the drawing app
+-[]

@@ -1,18 +1,17 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
-import UploadClient from "./uploadClient";
+import UploadClient, { UploadDropzoneClient } from "./uploadClient";
 
 export function TopNav() {
   return (
-    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
+    <nav className="flex w-full items-center justify-between border-b bg-black p-2 text-xl font-semibold text-white">
       <div>Gallery</div>
-
-      <div className="flex flex-row items-center justify-center gap-4 rounded-2xl bg-white  p-2">
+      <div className="flex flex-row items-center justify-center gap-10  rounded-lg  bg-white  p-1 text-black">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadClient />
+          {/* <UploadDropzoneClient /> */}
           <UserButton />
         </SignedIn>
       </div>
