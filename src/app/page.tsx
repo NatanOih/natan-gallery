@@ -1,6 +1,8 @@
 import { SignedOut, SignedIn } from "@clerk/nextjs";
 import { UploadDropzoneClient } from "./_components/uploadClient";
 import { getUploads } from "~/server/queries";
+import Image from "next/image";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -20,23 +22,28 @@ async function Uploads() {
         {[...uploads, ...uploads, ...uploads].map((upload) => (
           <div
             key={upload.id}
-            className="flex h-60 w-60 flex-col items-center justify-start gap-1 overflow-hidden truncate  rounded-sm border-[1px] border-white p-2"
+            className=" w-100 h-100 flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border-[1px] border-white p-2"
           >
-            <p className="w-full  text-center"> {upload.name}</p>
+            <p className="max-w-40 truncate text-center"> {upload.name}</p>
             <p> uploaded by: {upload.userName}</p>
             {audioExtensions.some((ext) => upload.url.endsWith(ext)) ? (
-              <audio
-                className="translate-y-14 -rotate-[25deg] scale-[80%]"
-                controls
-              >
-                <source src={upload.url} />
-              </audio>
+              <div className="flex h-60 w-60 items-center justify-center">
+                <audio className=" rotate-[27deg] " controls>
+                  <source src={upload.url} />
+                </audio>
+              </div>
             ) : (
-              <img
-                className=" object-scale-down"
-                src={upload.url}
-                alt={upload.name}
-              />
+              <div className="flex h-60 w-60 items-center justify-center">
+                <Link href={`/uploads/${upload.id}`}>
+                  <Image
+                    width={300}
+                    height={300}
+                    style={{ objectFit: "contain" }}
+                    src={upload.url}
+                    alt={upload.name}
+                  />
+                </Link>
+              </div>
             )}
           </div>
         ))}
