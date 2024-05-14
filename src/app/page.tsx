@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 
 async function Uploads() {
   const uploads = await getUploads();
+  console.log("uploads", uploads);
 
   const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
 
@@ -19,9 +20,9 @@ async function Uploads() {
         </SignedIn>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {[...uploads, ...uploads, ...uploads].map((upload) => (
+        {[...uploads, ...uploads, ...uploads].map((upload, index) => (
           <div
-            key={upload.id}
+            key={upload.id + "" + index}
             className="w-100 h-100 flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border-[1px] border-white p-2 transition-all hover:border-zinc-500 hover:bg-white/90 hover:text-black"
           >
             <p className="max-w-40 truncate text-center"> {upload.name}</p>
