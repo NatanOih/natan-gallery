@@ -12,8 +12,8 @@ async function Uploads() {
   const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
 
   return (
-    <section className="flex flex-col items-center justify-center gap-10">
-      <div className="rounded-md border-[1px] border-dashed border-zinc-300 bg-zinc-900 ">
+    <section className="flex flex-col items-center justify-center gap-10 p-4">
+      <div className="cursor-pointer rounded-md border-[1px] border-dashed border-zinc-300 bg-zinc-900 transition hover:bg-white/90">
         <SignedIn>
           <UploadDropzoneClient />
         </SignedIn>
@@ -22,19 +22,26 @@ async function Uploads() {
         {[...uploads, ...uploads, ...uploads].map((upload) => (
           <div
             key={upload.id}
-            className=" w-100 h-100 flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border-[1px] border-white p-2"
+            className="w-100 h-100 flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border-[1px] border-white p-2 transition-all hover:border-zinc-500 hover:bg-white/90 hover:text-black"
           >
             <p className="max-w-40 truncate text-center"> {upload.name}</p>
             <p> uploaded by: {upload.userName}</p>
             {audioExtensions.some((ext) => upload.url.endsWith(ext)) ? (
               <div className="flex h-60 w-60 items-center justify-center">
-                <audio className=" rotate-[27deg] " controls>
+                <audio
+                  className=" rotate-[27deg] cursor-pointer rounded-md transition-all hover:bg-black hover:text-white "
+                  controls
+                >
                   <source src={upload.url} />
                 </audio>
               </div>
             ) : (
-              <div className="flex h-60 w-60 items-center justify-center">
-                <Link href={`/uploads/${upload.id}`}>
+              <div className="flex h-60 w-60 items-center justify-center transition-all hover:scale-[102%]">
+                <Link
+                  className=""
+                  scroll={false}
+                  href={`/uploads/${upload.id}`}
+                >
                   <Image
                     width={300}
                     height={300}
