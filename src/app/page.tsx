@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 async function Uploads() {
   const uploads = await getUploads();
-  console.log("uploads", uploads);
 
   const audioExtensions = [".mp3", ".wav", ".m4a", ".ogg", "wma"]; // Add more extensions as needed
 
@@ -37,21 +36,21 @@ async function Uploads() {
                 </audio>
               </div>
             ) : (
-              <div className="flex h-60 w-60 items-center justify-center transition-all hover:scale-[102%]">
-                <Link
-                  className=""
-                  scroll={false}
-                  href={`/uploads/${upload.id}`}
-                >
-                  <Image
-                    width={300}
-                    height={300}
-                    style={{ objectFit: "contain" }}
-                    src={upload.url}
-                    alt={upload.name}
-                  />
-                </Link>
-              </div>
+              <Link
+                className="flex h-60 w-60 items-center justify-center overflow-hidden border-2 border-black transition-all hover:scale-[102%]"
+                scroll={false}
+                href={`/uploads/${upload.id}`}
+              >
+                {/* <div className="flex h-60 w-60 items-center justify-center transition-all hover:scale-[102%]"> */}
+                <Image
+                  width={300}
+                  height={300}
+                  style={{ objectFit: "contain" }}
+                  src={upload.url}
+                  alt={upload.name}
+                />
+                {/* </div> */}
+              </Link>
             )}
           </div>
         ))}

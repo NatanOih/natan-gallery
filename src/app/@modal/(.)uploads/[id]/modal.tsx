@@ -3,6 +3,16 @@
 import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
+import Image from "next/image";
+
+type IconProps = {
+  name: string;
+  alt: string;
+};
+
+export function Icon({ name, alt }: IconProps) {
+  return <Image src={`/${name}.png`} alt={alt} width="44" height="44" />;
+}
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -19,16 +29,21 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    // <div className="modal-backdrop">
     <dialog
       ref={dialogRef}
-      className="m-0 h-screen w-screen bg-black/90 text-white"
+      className=" m-0 h-screen w-screen bg-black/90 text-white"
       onClose={onDismiss}
     >
+      <button
+        className="absolute  left-[2%] top-[2%]  rounded-md border-[1px] border-black bg-white/80 p-2 transition-all hover:invert "
+        onClick={onDismiss}
+      >
+        {" "}
+        <Icon name={"exit"} alt="exit" />{" "}
+      </button>
       {children}
-      {/* <button onClick={onDismiss} className="close-button" /> */}
     </dialog>,
-    // </div>
+
     document.getElementById("modal-root")!,
   );
 }
