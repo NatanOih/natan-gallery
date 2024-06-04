@@ -1,4 +1,3 @@
-import { uploadthing } from "@t3-oss/env-nextjs/presets";
 import {
   generateReactHelpers,
   generateUploadButton,

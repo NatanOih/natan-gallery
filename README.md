@@ -16,6 +16,9 @@
 
   /_ @ts-expect-error כככ _/
 
+/_ eslint-disable @typescript-eslint/no-unsafe-assignment _/
+/_ eslint-disable @typescript-eslint/ban-ts-comment _/
+
 my todo
 
 -[] choose who can see your stuff

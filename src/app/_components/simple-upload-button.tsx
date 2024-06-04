@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 
 // inferred input off useUploadThing
@@ -22,12 +23,53 @@ const useUploadThingInputProps = (...args: Input) => {
     inputProps: {
       onChange,
       multiple: ($ut.permittedFileInfo?.config?.image?.maxFileCount ?? 1) > 1,
-      accept: "image/*",
+      // accept: ["/*"],
     },
     isUploading: $ut.isUploading,
   };
 };
 
-function SimpleUploadButton() {
-  return null;
+function UploadIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-8"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
+      />
+    </svg>
+  );
+}
+
+export function SimpleUploadButton() {
+  const router = useRouter();
+
+  const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onClientUploadComplete() {
+      router.refresh();
+    },
+  });
+  return (
+    <div>
+      <label
+        className="cursor-pointer p-1 text-white transition-colors  hover:text-blue-500 "
+        htmlFor="upload-button"
+      >
+        <UploadIcon />
+      </label>
+      <input
+        id="upload-button"
+        type="file"
+        className="sr-only"
+        {...inputProps}
+      />
+    </div>
+  );
 }

@@ -19,7 +19,7 @@ async function Uploads() {
         </SignedIn>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {[...uploads, ...uploads, ...uploads].map((upload, index) => (
+        {uploads.map((upload, index) => (
           <div
             key={upload.id + "" + index}
             className="w-100 h-100 flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border-[1px] border-white p-2 transition-all hover:border-zinc-500 hover:bg-white/90 hover:text-black"
@@ -41,7 +41,6 @@ async function Uploads() {
                 scroll={false}
                 href={`/uploads/${upload.id}`}
               >
-                {/* <div className="flex h-60 w-60 items-center justify-center transition-all hover:scale-[102%]"> */}
                 <Image
                   width={300}
                   height={300}
@@ -49,7 +48,6 @@ async function Uploads() {
                   src={upload.url}
                   alt={upload.name}
                 />
-                {/* </div> */}
               </Link>
             )}
           </div>
