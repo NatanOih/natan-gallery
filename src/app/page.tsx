@@ -1,5 +1,8 @@
 import { SignedOut, SignedIn } from "@clerk/nextjs";
-import { UploadDropzoneClient } from "./_components/uploadClient";
+import {
+  SignInButtonClient,
+  UploadDropzoneClient,
+} from "./_components/uploadClient";
 import { getUploads } from "~/server/queries";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,7 +65,7 @@ export default async function HomePage() {
     <main className="p-2">
       <SignedOut>
         <div className="h-full w-full p-4 text-center text-2xl">
-          Please sign in
+          Please <SignInButtonClient />
         </div>
       </SignedOut>
 

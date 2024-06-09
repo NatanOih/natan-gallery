@@ -1,13 +1,15 @@
 import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { TopNav } from "./_components/nav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { extractRouterConfig } from "uploadthing/server";
+import { Toaster } from "sonner";
 
-const inter = Inter({
+const poppins = Poppins({
+  weight: ["400"],
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -37,7 +39,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className={`font-sans ${inter.variable} `}>
+        <body className={` ${poppins.className} dark `}>
           <div className="grid  grid-rows-[auto,1fr]">
             {/* <div className=""> */}
             <TopNav />
@@ -45,6 +47,7 @@ export default function RootLayout({
           </div>
           {modal}
           <div id="modal-root" />
+          <Toaster theme={"dark"} />
         </body>
       </html>
     </ClerkProvider>

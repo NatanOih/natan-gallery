@@ -13,7 +13,7 @@ export function TopNav() {
       <Link className="text-4xl hover:text-white/80" href="/">
         Gallery
       </Link>
-      <div className="flex flex-row items-center justify-center gap-8  rounded-lg  px-4 text-black">
+      <div className="flex flex-row items-center justify-center gap-8  rounded-lg  px-4 text-white">
         <SignedOut>
           <SignInButton />
         </SignedOut>

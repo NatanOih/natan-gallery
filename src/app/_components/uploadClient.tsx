@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { UploadButton, UploadDropzone } from "~/utils/uploadthing";
@@ -26,4 +27,8 @@ export function UploadDropzoneClient() {
       }}
     />
   );
+}
+
+export function SignInButtonClient() {
+  return <SignInButton />;
 }
