@@ -25,6 +25,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }, []);
 
   function onDismiss() {
+    // dialogRef.current?.close();
     router.back();
   }
 
