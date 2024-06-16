@@ -31,7 +31,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className=" m-0 h-screen w-screen bg-black/90 text-white"
+      className="  m-0 h-screen w-screen bg-black/90 text-white"
       onClose={onDismiss}
     >
       <button
@@ -41,6 +41,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
         {" "}
         <Icon name={"exit"} alt="exit" />{" "}
       </button>
+
       {children}
     </dialog>,
 
