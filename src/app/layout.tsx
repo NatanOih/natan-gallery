@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { TopNav } from "./_components/nav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { ourFileRouter } from "./api/uploadthing/core";
@@ -48,8 +48,8 @@ export default function RootLayout({
                 {children}
               </main>
               {modal}
+              <div id="modal-root" />
             </div>
-            <div id="modal-root" />
             <Toaster theme={"dark"} />
           </body>
         </html>

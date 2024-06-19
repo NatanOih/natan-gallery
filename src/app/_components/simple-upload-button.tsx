@@ -12,13 +12,11 @@ const useUploadThingInputProps = (...args: Input) => {
   const $ut = useUploadThing(...args);
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("e", e);
     if (!e.target.files) return;
 
     const selectedFiles = Array.from(e.target.files);
     const result = await $ut.startUpload(selectedFiles);
 
-    console.log("uploaded files", result);
     // TODO: persist result in state maybe?
   };
 

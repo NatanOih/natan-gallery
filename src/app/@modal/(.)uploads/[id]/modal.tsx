@@ -16,6 +16,7 @@ export function Icon({ name, alt }: IconProps) {
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+
   const dialogRef = useRef<ElementRef<"dialog">>(null);
 
   useEffect(() => {
@@ -25,14 +26,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }, []);
 
   function onDismiss() {
-    // dialogRef.current?.close();
     router.back();
   }
 
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="  m-0 h-screen w-screen bg-black/90 text-white"
+      className="   m-0 h-screen w-screen bg-black/90 text-white"
       onClose={onDismiss}
     >
       <button
@@ -45,7 +45,6 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
       {children}
     </dialog>,
-
     document.getElementById("modal-root")!,
   );
 }

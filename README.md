@@ -24,3 +24,5 @@ my todo
 -[] choose who can see your stuff
 -[] add the drawing app
 -[]
+
+    // "dev": "next dev --turbo",

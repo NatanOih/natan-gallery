@@ -1,13 +1,9 @@
-import FullPageImageView from "~/components/full-image-page";
+import { FullPageImageView } from "~/app/common/full-image-page";
 
-export default async function ImageModal({
+export default function ImageModal({
   params: { id: imageId },
 }: {
   params: { id: string };
 }) {
-  const idAsNum = Number(imageId);
-
-  if (Number.isNaN(idAsNum)) throw new Error("Invalid photo id");
-
-  return <FullPageImageView id={idAsNum} />;
+  return <FullPageImageView id={imageId} />;
 }

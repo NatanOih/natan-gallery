@@ -1,16 +1,19 @@
+import { FullPageImageView } from "~/app/common/full-image-page";
+
 import { Modal } from "./modal";
-import FullPageImageView from "~/components/full-image-page";
+
+export const dynamic = "force-dynamic";
 
 export default function ImageModal({
   params: { id: imageId },
 }: {
   params: { id: string };
 }) {
-  const idAsNum = Number(imageId);
-
   return (
-    <Modal>
-      <FullPageImageView id={idAsNum} />
-    </Modal>
+    <>
+      <Modal>
+        <FullPageImageView id={imageId} />
+      </Modal>
+    </>
   );
 }

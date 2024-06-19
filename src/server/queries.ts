@@ -5,6 +5,7 @@ import { uploads } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function getUploads() {
   const user = auth();
@@ -15,6 +16,7 @@ export async function getUploads() {
     // where: (model, { eq }) => eq(model.userId, user.userId),
     orderBy: (model, { desc }) => desc(model.id),
   });
+
   return uploads;
 }
 
@@ -42,4 +44,6 @@ export async function deleteImage(id: number) {
   await db
     .delete(uploads)
     .where(and(eq(uploads.id, id), eq(uploads.userId, user.userId)));
+
+  return 1;
 }

@@ -10,7 +10,7 @@
     "db:studio": "drizzle-kit studio",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "dev": "next dev --turbo",
+    "dev": "next dev ",
     "lint": "next lint",
     "start": "next start"
   },
