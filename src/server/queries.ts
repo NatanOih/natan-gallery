@@ -4,9 +4,6 @@ import { auth } from "@clerk/nextjs/server";
 import { uploads } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
-
 export async function getUploads() {
   const user = auth();
 
