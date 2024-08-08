@@ -9,7 +9,7 @@ import { SimpleUploadButton } from "./simple-upload-button";
 
 export function TopNav() {
   return (
-    <nav className="flex w-full items-center justify-between border-b bg-neutral-900  px-4 font-semibold text-white">
+    <nav className="flex w-full items-center justify-between border-b bg-neutral-900 px-4  py-2 font-semibold text-white">
       <Link className="text-4xl hover:text-white/80" href="/">
         Gallery
       </Link>

@@ -1,14 +1,17 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { getImage } from "~/server/queries";
-import DeleteForm from "./deleteForm";
+import DeleteForm, { DeleteFormProps } from "./deleteForm";
 
 export async function FullPageImageView(props: { id: string }) {
   const idAsNum = Number(props.id);
   if (Number.isNaN(idAsNum)) throw new Error("Invalid photo id");
 
-  const image = await getImage(idAsNum);
+  const image = (await getImage(idAsNum)) as DeleteFormProps;
 
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
+
+  if (!image || !uploaderInfo) return null;
+
   return (
     <div className="flex h-full w-full min-w-0 items-center justify-center gap-20 ">
       <div className=" flex flex-1 items-center justify-center p-10">
@@ -34,18 +37,7 @@ export async function FullPageImageView(props: { id: string }) {
           </span>
         </div>
         <div className="p-2">
-          {/* <form
-            action={async () => {
-              "use server";
-
-              await deleteImage(idAsNum);
-            }}
-          >
-            <Button type="submit" variant="destructive">
-              Delete
-            </Button>
-          </form> */}
-          <DeleteForm id={idAsNum} />
+          <DeleteForm {...image} />
         </div>
       </div>
     </div>

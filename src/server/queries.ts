@@ -5,12 +5,7 @@ import { uploads } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 
 export async function getUploads() {
-  const user = auth();
-
-  if (!user.userId) throw new Error("Unauthorized");
-
   const uploads = await db.query.uploads.findMany({
-    // where: (model, { eq }) => eq(model.userId, user.userId),
     orderBy: (model, { desc }) => desc(model.id),
   });
 
@@ -18,9 +13,9 @@ export async function getUploads() {
 }
 
 export async function getImage(id: number) {
-  const user = auth();
+  // const user = auth();
 
-  if (!user.userId) throw new Error("Unatuhorized");
+  // if (!user.userId) throw new Error("Unatuhorized");
 
   const image = await db.query.uploads.findFirst({
     where: (model, { eq }) => eq(model.id, id),
